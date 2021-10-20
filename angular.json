@@ -17,7 +17,41 @@
             "polyfills": "apps/gc-web/src/polyfills.ts",
             "tsConfig": "apps/gc-web/tsconfig.app.json",
             "assets": ["apps/gc-web/src/favicon.ico", "apps/gc-web/src/assets"],
-            "styles": ["apps/gc-web/src/styles.css"],
+            "styles": [
+              {
+                "input": "apps/gc-web/src/styles.scss"
+              },
+              {
+                "input": "apps/gc-web/src/highlightjs/material-light.scss"
+              },
+              {
+                "inject": false,
+                "input": "apps/gc-web/src/styles/custom-themes/pink-bluegrey.scss",
+                "bundleName": "pink-bluegrey"
+              },
+              {
+                "inject": false,
+                "input": "apps/gc-web/src/styles/custom-themes/deeppurple-amber.scss",
+                "bundleName": "deeppurple-amber"
+              },
+              {
+                "inject": false,
+                "input": "apps/gc-web/src/styles/custom-themes/indigo-pink.scss",
+                "bundleName": "indigo-pink"
+              },
+              {
+                "inject": false,
+                "input": "apps/gc-web/src/styles/custom-themes/purple-green.scss",
+                "bundleName": "purple-green"
+              }
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules",
+                "src",
+                "src/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
