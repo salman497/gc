@@ -1,44 +1,43 @@
-import { Component, ViewChild, HostListener } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
+import {Component, OnDestroy, ViewEncapsulation} from '@angular/core';
+
+import {GaService} from './shared/ga/ga';
+import {NavigationFocusService} from './shared/navigation-focus/navigation-focus.service';
+import {Subscription} from 'rxjs';
+import {map, pairwise, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'core';
-  opened = true;
-  @ViewChild('sidenav', { static: true }) sidenav: MatSidenav;
+export class AppComponent implements OnDestroy {
+  private subscriptions = new Subscription();
 
-  ngOnInit() {
-    console.log(window.innerWidth)
-    if (window.innerWidth < 768) {
-      this.sidenav.fixedTopGap = 55;
-      this.opened = false;
-    } else {
-      this.sidenav.fixedTopGap = 55;
-      this.opened = true;
-    }
+  constructor(ga: GaService, navigationFocusService: NavigationFocusService) {
+    this.subscriptions.add(navigationFocusService.navigationEndEvents.pipe(
+      map(e => e.urlAfterRedirects),
+      startWith(''),
+      pairwise()
+    ).subscribe(([fromUrl, toUrl]) => {
+      // We want to reset the scroll position on navigation except when navigating within
+      // the documentation for a single component.
+      if (!navigationFocusService.isNavigationWithinComponentView(fromUrl, toUrl)) {
+        resetScrollPosition();
+      }
+      ga.locationChanged(toUrl);
+    }));
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    if (event.target.innerWidth < 768) {
-      this.sidenav.fixedTopGap = 55;
-      this.opened = false;
-    } else {
-      this.sidenav.fixedTopGap = 55
-      this.opened = true;
-    }
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
+}
 
-  isBiggerScreen() {
-    const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    if (width < 768) {
-      return true;
-    } else {
-      return false;
+function resetScrollPosition() {
+  if (typeof document === 'object' && document) {
+    const sidenavContent = document.querySelector('.mat-drawer-content');
+    if (sidenavContent) {
+      sidenavContent.scrollTop = 0;
     }
   }
 }
