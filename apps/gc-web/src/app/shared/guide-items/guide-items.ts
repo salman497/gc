@@ -12,7 +12,7 @@ const GUIDES = [
     id: 'getting-started',
     name: 'Getting started',
     document: '/docs-content/guides/getting-started.html',
-    overview: 'Add Angular Material to your project!'
+    overview: 'Add Goals Collaboration to your project!'
   },
   {
     id: 'schematics',
@@ -22,27 +22,27 @@ const GUIDES = [
   },
   {
     id: 'theming',
-    name: 'Theming Angular Material',
+    name: 'Theming Goals Collaboration',
     document: '/docs-content/guides/theming.html',
-    overview: 'Customize your application with Angular Material\'s theming system.'
+    overview: 'Customize your application with Goals Collaboration\'s theming system.'
   },
   {
     id: 'theming-your-components',
     name: 'Theming your own components',
     document: '/docs-content/guides/theming-your-components.html',
-    overview: 'Use Angular Material\'s theming system in your own custom components.'
+    overview: 'Use Goals Collaboration\'s theming system in your own custom components.'
   },
   {
     id: 'typography',
     name: 'Customizing Typography',
     document: '/docs-content/guides/typography.html',
-    overview: 'Configure the typography settings for Angular Material components.'
+    overview: 'Configure the typography settings for Goals Collaboration components.'
   },
   {
     id: 'customizing-component-styles',
     name: 'Customizing component styles',
     document: '/docs-content/guides/customizing-component-styles.html',
-    overview: 'Understand how to approach style customization with Angular Material components.'
+    overview: 'Understand how to approach style customization with Goals Collaboration components.'
   },
   {
     id: 'creating-a-custom-form-field-control',
