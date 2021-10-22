@@ -22,7 +22,7 @@ const TOP_COMPONENTS = ['datepicker', 'input', 'slide-toggle', 'slider', 'button
 })
 export class Homepage implements OnInit {
   @HostBinding('class.main-content') readonly mainContentClass = true;
-  isNextVersion = location.hostname.startsWith('next.material.angular.io');
+
 
   constructor(public _componentPageTitle: ComponentPageTitle, public guideItems: GuideItems) {
   }
