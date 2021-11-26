@@ -13,5 +13,9 @@ export const MATERIAL_DOCS_ROUTES: Routes = [
     path: '404',
     loadChildren: () => import('./pages/not-found').then(m => m.NotFoundModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login').then(m => m.LoginModule)
+  },
   {path: '**', redirectTo: '/404'},
 ];

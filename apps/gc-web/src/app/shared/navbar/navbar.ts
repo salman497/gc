@@ -54,4 +54,5 @@ export class NavBar implements OnDestroy {
   declarations: [NavBar],
   providers: [StyleManager, ThemeStorage]
 })
+
 export class NavBarModule { }
